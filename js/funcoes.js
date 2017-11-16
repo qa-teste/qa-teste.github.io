@@ -113,7 +113,7 @@ function calcularFmea(){
 }
 
 function gerarUrl(){
-	var url="qa-teste.github.io/index.html";
+	var url="index.html";
 	var ocorrencia= $('#ocorrencia').val();
 	var severidade= $('#severidade').val();
 	var deteccao= $('#deteccao').val();
