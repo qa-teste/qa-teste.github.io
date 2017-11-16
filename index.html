@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<header>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<script type="text/javascript" charset="UTF-8" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="js/bootstrap.bundle.js"></script>
+<script type="text/javascript" charset="UTF-8" src="js/funcoes.js"></script>
+</header>
+<body>
+	<div class="container-fluid">
+		<div class="row div1">
+			<div class="col-md-2">
+				<img src="img/logo.jpg" width="200px">
+			</div>
+			<div class="col-md-10">
+				<h4>FMEA - QA Engenharia de vídeo</h4>
+			</div>
+		</div>
+		<br><br>
+		<div class="row div2">
+			<div class="col-md-4">
+				<table>
+					<tr><td><strong>Falha:</strong> Perda de função quando ela é necessária.</td></tr>
+					<tr><td><strong>Ocorrência de falha:</strong> Quantas vezes isto acontece.</td></tr>
+					<tr><td><strong>Severidade de falha:</strong> O quão grave é a falha quando ela ocorre?</td></tr>
+					<tr><td><strong>Detecção de falha:</strong> O método utilizado para encontrar a falha.</td></tr>
+					<tr><td><strong>Grupo de teste:</strong> Peso atribuido a cada grupo específico de teste.</td></tr>
+				</table>
+			</div>
+			<div class="col-md-4">
+				<table class="table table-bordered">
+					<tr><th colspan='2'><strong>Grupo</strong></th></tr>
+					<tr>
+						<td>1</td>
+						<td>Interface,  System Services, Startup, Alpha test, Backup&Reset</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>EPG, Interativity, Channel View</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>Parental Control, Wizard Instalação, VOD</td>
+					</tr>
+				</table>
+			</div>			
+			<div class="col-md-4">
+				<table>
+					<tr><td colspan='2'><strong><label class="formula">Criticidade = Ocorrência x Severidade x Detecção x Grupo de Teste</label></strong></td></tr>
+
+					<tr><td colspan='2'>&nbsp;</td></tr>
+					<tr>
+						<td width="15%">Ocorrência:</td>
+						<td><input type="text" class="numero" id="ocorrencia" onkeyup="validadeDado(this, this.value); calcularFmea();" placeholder="0"></td>
+					</tr>
+					<tr>
+						<td>Severidade:</td>
+						<td><input type="text" class="numero" id="severidade" onkeyup="validadeDado(this, this.value); calcularFmea();" placeholder="0"></td>
+					</tr>
+					<tr>
+						<td>Detecção:</td>
+						<td><input type="text" class="numero" id="deteccao" onkeyup="validadeDado(this, this.value); calcularFmea();" placeholder="0"></td>
+					</tr>
+					<tr>
+						<td>Grupo</td>
+						<td>
+							<select id="grupo" onchange="calcularFmea();">
+								<option disabled="disabled" selected="selected" value="">Selecione</option>
+								<option value="0.8">Grupo 1</option>
+								<option value="0.9">Grupo 2</option>
+								<option value="1">Grupo 3</option>
+							</select>
+						</td>
+					</tr>					
+					<tr>
+						<td><strong>Criticidade:<strong></td>
+						<td><input type="text" id="criticidade" disabled value="0%" size='10'></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<br><br>
+		<div class="row div3">
+			<div class="col-md-2">
+				<table class="table table-bordered">
+					<tr><th colspan="2">Ocorrência</th></tr>
+					<tr>
+						<td>1</td>
+						<td>Muito Baixa</td>
+					</tr>
+					
+					<tr>
+						<td>2</td>
+						<td>Baixa</td>
+					</tr>
+					
+					<tr>
+						<td>3</td>
+						<td>Moderada</td>
+					</tr>
+					
+					<tr>
+						<td>4</td>
+						<td>Alta</td>
+					</tr>
+					
+					<tr>
+						<td>5</td>
+						<td>Muito Alta</td>
+					</tr>
+				</table>
+			</div>
+			<div class="col-md-4">
+				<table class="table table-bordered">
+					<tr><th colspan="3">Severidade</th></tr>
+					<tr>
+						<td>1</td>
+						<td>Muito Baixa</td>
+						<td>O cliente provavelmente não será afetado</td>
+					</tr>
+					
+					<tr>
+						<td>2</td>
+						<td>Baixa</td>
+						<td>Leve aborrecimento</td>
+					</tr>
+					
+					<tr>
+						<td>3</td>
+						<td>Moderada</td>
+						<td>Insatisfação do cliente</td>
+					</tr>
+					
+					<tr>
+						<td>4</td>
+						<td>Alta</td>
+						<td>Alto grau de insatisfação</td>
+					</tr>
+					
+					<tr>
+						<td>5</td>
+						<td>Muito Alta</td>
+						<td>Impossibilita o cliente de usufluir do serviço</td>
+					</tr>
+				</table>
+			</div>
+			<div class="col-md-4">
+				<table class="table table-bordered">
+					<tr><th colspan="3">Detecção</th></tr>
+					<tr>
+						<td>1</td>
+						<td>Muito Baixa</td>
+						<td>Probabilidade remota de detecção</td>
+					</tr>
+					
+					<tr>
+						<td>2</td>
+						<td>Baixa</td>
+						<td>Baixa probabilidade de detecção</td>
+					</tr>
+					
+					<tr>
+						<td>3</td>
+						<td>Moderada</td>
+						<td>Moderada probabilidade de detecção</td>
+					</tr>
+					
+					<tr>
+						<td>4</td>
+						<td>Alta</td>
+						<td>Alta probabilidade de detecção</td>
+					</tr>
+					
+					<tr>
+						<td>5</td>
+						<td>Muito Alta</td>
+						<td>Probabilidade extrema de detecção</td>
+					</tr>
+				</table>
+			</div>
+			<div class="col-md-2">
+				<table class="table table-bordered">
+					<tr><th colspan="2">Criticidade</th></tr>
+					<tr style="background:#94ff7a;">
+						<td>1% - 20%</td>
+						<td>Trivial</td>
+					</tr>
+					
+					<tr style="background:#fffa00;">
+						<td>21% - 40%</td>
+						<td>Minor</td>
+					</tr>
+					
+					<tr style="background:#ff9900;">
+						<td>41% - 60%</td>
+						<td>Major</td>
+					</tr>
+					
+					<tr style="background:#ff0000; color:#FFF">
+						<td>61% - 80%</td>
+						<td>Critical</td>
+					</tr>
+					
+					<tr style="background:#000; color:#FFF">
+						<td>81% - 100%</td>
+						<td>Blocked</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

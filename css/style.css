@@ -1,0 +1,46 @@
+body{
+	font-family: "Arial", "Verdana", sans-serif;
+	background-color: #fff;
+	font-size: 14px;
+	color: #000;
+}
+
+input{
+	font-size: 12px;
+}
+
+.titulo{
+	#font-weight:bold;	
+}
+
+.numero{
+	width: 50px;
+}
+
+.table td{
+	padding: 5px !important;
+}
+
+.table th{
+	text-align: center;
+	font-size:18px;
+	background: #013241;
+	color: #FFF;
+}
+
+.div1{
+	color: #FFF;
+	background-color: #013241;
+}
+
+.div2{
+	border-width:1px;
+}
+
+.formula{
+	font-size:13px;
+}
+
+#criticidade{
+	font-weight:bold;
+}
