@@ -26,15 +26,15 @@ $(document).ready(function(){
 			cor="#94ff7a";
 			nivel="Trivial";
 		}
-		else if(criticidade>11 && criticidade<=40){
+		else if(criticidade>10 && criticidade<=40){
 			cor="#fffa00";
 			nivel="Minor";
 		}
-		else if(criticidade>41 && criticidade<=70){
+		else if(criticidade>40 && criticidade<=70){
 			cor="#ff9900";
 			nivel="Major";
 		}
-		else if(criticidade>71 && criticidade<=90){
+		else if(criticidade>70 && criticidade<=90){
 			cor="#ff0000";
 			cor_fonte="#FFF";
 			nivel="Critical";
@@ -87,13 +87,13 @@ function calcularFmea(){
 			else if((ocorrencia==3 && deteccao==1 ) || (ocorrencia==1 && deteccao==3)) criticidade = criticidade*1.7;
 			else if((ocorrencia==3 && deteccao==2 ) || (ocorrencia==2 && deteccao==3)) criticidade = criticidade*1.5;
 			else if(ocorrencia==3 && deteccao==3) criticidade = criticidade*1.1;
-		}
-		
-		if(severidade == 5){
+		} else	if(severidade == 5){
 			if(ocorrencia==1 && deteccao==1) criticidade = criticidade*5;
 			else if ((ocorrencia>=2 && deteccao==1) || (ocorrencia==1 && deteccao>=2)) criticidade = criticidade*3;
 			else criticidade = criticidade*2;
-		}
+		} else if((severidade==2 || severidade==3) && criticidade<=10){
+			criticidade = 11;
+		} 
 		
 		if(criticidade>100) criticidade =100;
 		
@@ -104,15 +104,15 @@ function calcularFmea(){
 			cor="#94ff7a";
 			nivel="Trivial";
 		}
-		else if(criticidade>11 && criticidade<=40){
+		else if(criticidade>10 && criticidade<=40){
 			cor="#fffa00";
 			nivel="Minor";
 		}
-		else if(criticidade>41 && criticidade<=70){
+		else if(criticidade>40 && criticidade<=70){
 			cor="#ff9900";
 			nivel="Major";
 		}
-		else if(criticidade>71 && criticidade<=90){
+		else if(criticidade>70 && criticidade<=90){
 			cor="#ff0000";
 			cor_fonte="#FFF";
 			nivel="Critical";
