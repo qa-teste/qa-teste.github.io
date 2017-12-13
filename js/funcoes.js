@@ -80,8 +80,23 @@ function calcularFmea(){
 		//var criticidade = ((ocorrencia*severidade*deteccao)/125)*grupo*100;
 		var criticidade = ((99/44)*((ocorrencia*severidade*deteccao)-1))+1
 		
-		if(severidade == 5){
+		if(severidade == 4){
+			if(ocorrencia==1 && deteccao==1) criticidade = criticidade*3;
+			else if((ocorrencia==2 && deteccao==1 ) || (ocorrencia==1 && deteccao==2)) criticidade = criticidade*2;
+			else if(ocorrencia==2 && deteccao==2) criticidade = criticidade*1.5;
+			else if((ocorrencia==3 && deteccao==1 ) || (ocorrencia==1 && deteccao==3)) criticidade = criticidade*1.7;
+			else if((ocorrencia==3 && deteccao==2 ) || (ocorrencia==2 && deteccao==3)) criticidade = criticidade*1.5;
+			else if(ocorrencia==3 && deteccao==3) criticidade = criticidade*1.1;
 		}
+		
+		if(severidade == 5){
+			if(ocorrencia==1 && deteccao==1) criticidade = criticidade*5;
+			else if ((ocorrencia>=2 && deteccao==1) || (ocorrencia==1 && deteccao>=2)) criticidade = criticidade*3;
+			else criticidade = criticidade*2;
+		}
+		
+		if(criticidade>100) criticidade =100;
+		
 		var nivel="";
 		var cor="#545454";
 		var cor_fonte="#000";
