@@ -4,42 +4,42 @@ $(document).ready(function(){
 		ocorrencia=parametros.split('&')[0];
 		severidade=parametros.split('&')[1];
 		deteccao=parametros.split('&')[2];
-		grupo=parametros.split('&')[3];
-		criticidade=parametros.split('&')[4];
+		//grupo=parametros.split('&')[3];
+		criticidade=parametros.split('&')[3];
 		
 		valor_ocorrencia=ocorrencia.split('=')[1];
 		valor_severidade=severidade.split('=')[1];
 		valor_deteccao=deteccao.split('=')[1];
-		valor_grupo=grupo.split('=')[1];
+		//valor_grupo=grupo.split('=')[1];
 		valor_criticidade=criticidade.split('=')[1];
 
 		$('#ocorrencia').val(valor_ocorrencia);
 		$('#severidade').val(valor_severidade);
 		$('#deteccao').val(valor_deteccao);
-		$('#grupo').val(valor_grupo);
+		//$('#grupo').val(valor_grupo);
 		
 		criticidade=valor_criticidade.split('%')[0];
 		var cor="#545454";
 		var cor_fonte="#000";
 		var nivel="";
-		if(criticidade>0 && criticidade <=20){
+		if(criticidade>0 && criticidade <=10){
 			cor="#94ff7a";
 			nivel="Trivial";
 		}
-		else if(criticidade>20 && criticidade<=40){
+		else if(criticidade>11 && criticidade<=40){
 			cor="#fffa00";
 			nivel="Minor";
 		}
-		else if(criticidade>40 && criticidade<=60){
+		else if(criticidade>41 && criticidade<=70){
 			cor="#ff9900";
 			nivel="Major";
 		}
-		else if(criticidade>60 && criticidade<=80){
+		else if(criticidade>71 && criticidade<=90){
 			cor="#ff0000";
 			cor_fonte="#FFF";
 			nivel="Critical";
 		}
-		else if(criticidade>80){
+		else if(criticidade>90){
 			cor="#000";
 			cor_fonte="#FFF";
 			nivel="Blocked";
@@ -73,32 +73,36 @@ function calcularFmea(){
 		var deteccao= $('#deteccao').val();
 	}
 	
-	var grupo = $('#grupo').val();
+	//var grupo = $('#grupo').val();
 	
 	
-	if(ocorrencia!="" && severidade!="" && deteccao!="" && grupo!="" && grupo!=null){
-		var criticidade = ((ocorrencia*severidade*deteccao)/125)*grupo*100;
+	if(ocorrencia!="" && severidade!="" && deteccao!=""/* && grupo!="" && grupo!=null*/){
+		//var criticidade = ((ocorrencia*severidade*deteccao)/125)*grupo*100;
+		var criticidade = ((99/44)*((ocorrencia*severidade*deteccao)-1))+1
+		
+		if(severidade == 5){
+		}
 		var nivel="";
 		var cor="#545454";
 		var cor_fonte="#000";
-		if(criticidade>0 && criticidade <=20){
+		if(criticidade>0 && criticidade <=10){
 			cor="#94ff7a";
 			nivel="Trivial";
 		}
-		else if(criticidade>20 && criticidade<=40){
+		else if(criticidade>11 && criticidade<=40){
 			cor="#fffa00";
 			nivel="Minor";
 		}
-		else if(criticidade>40 && criticidade<=60){
+		else if(criticidade>41 && criticidade<=70){
 			cor="#ff9900";
 			nivel="Major";
 		}
-		else if(criticidade>60 && criticidade<=80){
+		else if(criticidade>71 && criticidade<=90){
 			cor="#ff0000";
 			cor_fonte="#FFF";
 			nivel="Critical";
 		}
-		else if(criticidade>80){
+		else if(criticidade>90){
 			cor="#000";
 			cor_fonte="#FFF";
 			nivel="Blocked";
@@ -113,26 +117,32 @@ function calcularFmea(){
 }
 
 function gerarUrl(){
-	var url="index.html";
+	var url="file:///C:/Users/a0071351/Desktop/fmea/index.html";
 	var ocorrencia= $('#ocorrencia').val();
 	var severidade= $('#severidade').val();
 	var deteccao= $('#deteccao').val();
-	var grupo = $('#grupo').val();
+	//var grupo = $('#grupo').val();
 	var criticidade = $('#criticidade').val();
-	url = url+"?ocorrencia="+ocorrencia+"&severidade="+severidade+"&deteccao="+deteccao+"&grupo="+grupo+"&criticidade="+criticidade;
+	url = url+"?ocorrencia="+ocorrencia+"&severidade="+severidade+"&deteccao="+deteccao/*+"&grupo="+grupo*/+"&criticidade="+criticidade;
 	
 	window.location.href = url;
 }
 
 function validadeDado(obj, valor){
-	$(".numero").bind("keyup blur focus", function(e) {
-            e.preventDefault();
-            var expre = /[^\d]/g;
-            $(this).val($(this).val().replace(expre,''));
-       });
-	if(valor >=5){
-		$('#'+obj.id).val(5);
-	} else if(valor < 0){
-		$('#'+obj.id).val(1);
+	//aceita apenas números
+	$("#"+obj.id).val(valor.replace(/\D/g, ''));
+   
+	if(obj.id == "severidade"){
+		if(valor >=5){
+			$('#'+obj.id).val(5);
+		} else if(valor < 0){
+			$('#'+obj.id).val(1);
+		}
+	} else{
+		if(valor >=3){
+			$('#'+obj.id).val(3);
+		} else if(valor < 0){
+			$('#'+obj.id).val(1);
+		}
 	}
 }

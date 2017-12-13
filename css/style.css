@@ -19,6 +19,7 @@ input{
 
 .table td{
 	padding: 5px !important;
+	vertical-align: middle;
 }
 
 .table th{
