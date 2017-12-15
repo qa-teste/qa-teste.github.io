@@ -18,36 +18,31 @@ $(document).ready(function(){
 		$('#deteccao').val(valor_deteccao);
 		//$('#grupo').val(valor_grupo);
 		
-		criticidade=valor_criticidade.split('%')[0];
+		//criticidade=valor_criticidade.split('%')[0];
 		var cor="#545454";
 		var cor_fonte="#000";
-		var nivel="";
-		if(criticidade>0 && criticidade <=10){
+		var nivel=valor_criticidade;
+		if(nivel=="Trivial"){
 			cor="#94ff7a";
-			nivel="Trivial";
 		}
-		else if(criticidade>10 && criticidade<=40){
+		else if(nivel=="Minor"){
 			cor="#fffa00";
-			nivel="Minor";
 		}
-		else if(criticidade>40 && criticidade<=70){
+		else if(nivel=="Major"){
 			cor="#ff9900";
-			nivel="Major";
 		}
-		else if(criticidade>70 && criticidade<=90){
+		else if(nivel=="Critical"){
 			cor="#ff0000";
 			cor_fonte="#FFF";
-			nivel="Critical";
 		}
-		else if(criticidade>90){
+		else if(nivel=="Blocked"){
 			cor="#000";
 			cor_fonte="#FFF";
-			nivel="Blocked";
 		}
-		criticidade=Math.round(criticidade);
+		//criticidade=Math.round(criticidade);
 		$('#criticidade').css('background', cor);
 		$('#criticidade').css('color', cor_fonte);
-		$('#criticidade').val(criticidade+"% - "+nivel);
+		$('#criticidade').val(nivel);
 	}
 });
 
@@ -125,15 +120,15 @@ function calcularFmea(){
 		criticidade=Math.round(criticidade);
 		$('#criticidade').css('background', cor);
 		$('#criticidade').css('color', cor_fonte);
-		$('#criticidade').val(criticidade+"%");
+		$('#criticidade').val(nivel);
 		
 		gerarUrl();
 	}
 }
 
 function gerarUrl(){
-	//var url="file:///C:/Users/a0071351/Desktop/fmea/index.html";
-	var url="index.html";
+	var url="file:///C:/Users/a0071351/Desktop/fmea/index.html";
+	//var url="index.html";
 	var ocorrencia= $('#ocorrencia').val();
 	var severidade= $('#severidade').val();
 	var deteccao= $('#deteccao').val();
