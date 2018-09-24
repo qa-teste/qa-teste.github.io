@@ -35,7 +35,7 @@ $(document).ready(function(){
 			cor="#ff0000";
 			cor_fonte="#FFF";
 		}
-		else if(nivel=="Blocked"){
+		else if(nivel=="Blocker"){
 			cor="#000";
 			cor_fonte="#FFF";
 		}
