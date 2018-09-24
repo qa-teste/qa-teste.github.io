@@ -115,7 +115,7 @@ function calcularFmea(){
 		else if(criticidade>90){
 			cor="#000";
 			cor_fonte="#FFF";
-			nivel="Blocked";
+			nivel="Blocker";
 		}
 		criticidade=Math.round(criticidade);
 		$('#criticidade').css('background', cor);
