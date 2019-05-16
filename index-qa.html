@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<header>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<script type="text/javascript" charset="UTF-8" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="js/bootstrap.bundle.js"></script>
+<script type="text/javascript" charset="UTF-8" src="js/funcions-fmea2-0.js"></script>
+</header>
+<body>
+	<div class="container-fluid">
+		<div class="row div2">
+			<div class="col-md-2">
+				<img src="img/logo.jpg" width="200px">
+			</div>
+			<div class="col-md-10">
+				<h4 style="padding-top: 20px">FMEA 2.0 - QA Engenharia de vídeo</h4>
+			</div>
+		</div>
+		<br>
+<!--EXPLICAÇÃO E FUNCIONAMENTO DA FERRAMENTA -->
+		<div class="row div2">
+	<!--INFORMAÇÕES DO MENU-->
+			<div class="col-md-5">
+				<table class="table table-bordered">
+					<tr><th>Categorias</th></tr>
+					<tr><td><strong>Reproducibilidade:</strong> Percentual de reproducibilidade da falha - 5 níveis</td></tr>
+					<tr><td><strong>Severidade:</strong> Relativo à percepção do usuário sobre o problema - 5 níveis</td></tr>
+					<tr><td><strong>Impacto:</strong> Relativo ao impacto de perda da funcionalidade - 6 níveis</td></tr>
+					<tr><td><strong>Grupo de funcionalidade:</strong> Peso da funcionalidade relativa ao uso - 5 grupos</td></tr>
+				</table>
+			</div>
+	<!--CALCULADORA-->
+			<div class="col-md-3">
+				<table>
+					<tr>
+						<td>Reproducibilidade:</td>
+						<td><input type="text" class="numero" id="reproducibility" onkeyup="validadeDado(this, this.value); calcularFmea();" placeholder="0"></td>
+					</tr>
+					<tr>
+						<td>Severidade:</td>
+						<td><input type="text" class="numero" id="severity" onkeyup="validadeDado(this, this.value); calcularFmea();" placeholder="0"></td>
+					</tr>
+					<tr>
+						<td>Impacto:</td>
+						<td><input type="text" class="numero" id="impact" onkeyup="validadeDado(this, this.value); calcularFmea();" placeholder="0"></td>
+					</tr>		
+                                        <tr>
+                                                <td>Grupo de Funcionalidade:</td>
+                                                <td><input type="text" class="numero" id="group" onkeyup="validadeDado(this, this.value); calcularFmea();" placeholder="0"></td>
+                                        </tr>
+                                        <tr>
+                                                <td><strong>Criticidade:<strong></td>
+                                                <td><input type="text" id="criticity" disabled value="0%" size='10'></td>
+                                        </tr>	
+				</table>
+			</div>
+	<!--PAINEL RESULTADOS-->
+			<div class="col-md-3">
+				<table class="table table-bordered">
+					<tr><th colspan="2">Criticidade</th></tr>
+					<tr style="background:#94ff7a;">
+						<td>0% - 20%</td>
+						<td>Trivial</td>
+					</tr>
+					
+					<tr style="background:#fffa00;">
+						<td>20% - 40%</td>
+						<td>Minor</td>
+					</tr>
+					
+					<tr style="background:#ff9900;">
+						<td>40% - 60%</td>
+						<td>Major</td>
+					</tr>
+					
+					<tr style="background:#ff0000; color:#FFF">
+						<td>60% - 80%</td>
+						<td>Critical</td>
+					</tr>
+					
+					<tr style="background:#000; color:#FFF">
+						<td>80% - 100%</td>
+						<td>Blocker</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+<!--MENU DE EXPLICAÇÃO PARA OPÇÕES-->
+		<div class="row div4">
+	<!--PAINEL REPRODUCIBILIDADE-->
+			<div class="col-md-2">
+				<table class="table table-bordered">
+					<tr><th colspan="5">Reproducibilidade</th></tr>
+					<tr>
+						<td>1</td>
+						<td>Raro</td>
+						<td>Única reprodução</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>Baixa</td>
+						<td>Até 30%</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>Moderada</td>
+						<td>Maior que 30% e menor que 70%</td>
+					</tr>
+                                        <tr>
+                                                <td>4</td>
+                                                <td>Frequente</td>
+                                                <td>Maior que 70%</td>
+                                        </tr>
+                                        <tr>
+                                                <td>5</td>
+                                                <td>Sempre</td>
+                                                <td>100%</td>
+                                        </tr>
+				</table>
+			</div>
+	<!--PAINEL SEVERIDADE-->
+			<div class="col-md-3">
+				<table class="table table-bordered">
+					<tr><th colspan="3">Severidade</th></tr>
+					<tr>
+						<td>1</td>
+						<td>Muito Baixa</td>
+						<td>Imperceptivel para a maioria dos clientes</td>
+					</tr>
+					
+					<tr>
+						<td>2</td>
+						<td>Baixa</td>
+						<td>Perceptivel ao usuário, porém a funcionalidade se mantém</td>
+					</tr>
+					
+					<tr>
+						<td>3</td>
+						<td>Moderada</td>
+						<td>Workaround simples – zapping e standby</td>
+					</tr>
+					
+					<tr>
+						<td>4</td>
+						<td>Alta</td>
+						<td>Workaround complexo – reboot elétrico e mudanças de contexto</td>
+					</tr>
+					
+					<tr>
+						<td>5</td>
+						<td>Muito Alta</td>
+						<td>Impossibilita o cliente de usufruir do serviço</td>
+					</tr>
+				</table>
+			</div>
+	<!--PAINEL IMPACTO-->
+			<div class="col-md-3">
+				<table class="table table-bordered">
+					<tr><th colspan="3">Impacto</th></tr>
+					<tr>
+						<td>1</td>
+						<td>Mínimo</td>
+						<td>Elementos textuais e de interface que não afetam o uso</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>Baixo</td>
+						<td>Artefatos com ocorrência menor que 2 seg – com auto recuperação</td>
+					</tr>					
+					<tr>
+						<td>3</td>
+						<td>Moderado</td>
+						<td>Impacto na funcionalidade, com tempo de até 10 seg – com auto recuperação</td>
+					</tr>
+                                        <tr>
+                                                <td>4</td>
+                                                <td>Alto</td>
+                                                <td>Impacto na funcionalidade, com tempo superior à 10s, ou com necessidade de intervenção do usuário</td>
+                                        </tr>
+                                        <tr>
+                                                <td>5</td>
+                                                <td>Crítico</td>
+                                                <td>Perda de funcionalidade, falha no controle parental e/ou com necessidade de visita técnica</td>
+                                        </tr>
+                                        <tr>
+                                                <td>6</td>
+                                                <td>Máximo</td>
+                                                <td>Prejuízo ao usuário (Financeiro e/ou Funcional) ou problemas de upgrade</td>
+                                        </tr>
+				</table>
+			</div>
+        <!--PAINEL GRUPO DE FUNCIONALIDADE-->
+                        <div class="col-md-3">
+                                <table class="table table-bordered">
+                                        <tr><th colspan="3">Grupo de Funcionalidade</th></tr>
+                                        <tr>
+                                                <td>5</td>
+                                                <td>Live TV</td>
+                                                <td>Zapping, Volume, Playback (áudio e vídeo), Pause TV, StartOver, Timeshift, Recording, Standby, Parental, Bloqueio, troca de áudio/legenda</td>
+                                        </tr>
+
+                                        <tr>
+                                                <td>5</td>
+                                                <td>Upgrade</td>
+                                                <td>Problemas com atualizaão de versão</td>
+                                        </tr>
+
+                                        <tr>
+                                                <td>3</td>
+                                                <td>VoD Netflix</td>
+                                                <td>Catchup, VoD, Netflix, Parental, Bloqueio, troca de áudio, legenda</td>
+                                        </tr>
+
+                                        <tr>
+                                                <td>2</td>
+                                                <td>Guias e Catálogos</td>
+                                                <td>EPG, Miniguia, On Now, VL Stripes e Search</td>
+                                        </tr>
+
+                                        <tr>
+                                                <td>1</td>
+                                                <td>Outros</td>
+                                                <td>Configurações, Recomendador, BI, Aplicativos, Notificações, etc</td>
+                                        </tr>
+                                </table>
+                        </div>
+		</div>
+	</div>
+</body>
+</html>
+
