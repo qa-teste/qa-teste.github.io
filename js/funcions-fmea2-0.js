@@ -79,11 +79,12 @@ function calcularFmea(){
 		var criticity = ((((reproducibility*3)+(severity*4)+(impact*6)+(group*3))-16)/70)*100; 
 		
 		if(criticity>100) criticity =100;
+		if(criticity<0) criticity =0;
 		
 		var nivel="";
 		var cor="#545454";
 		var cor_fonte="#000";
-		if(criticity>0 && criticity <20){
+		if(criticity>=0 && criticity <20){
 			cor="#94ff7a";
 			nivel="Trivial";
 		}
