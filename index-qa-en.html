@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<header>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<script type="text/javascript" charset="UTF-8" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="js/bootstrap.bundle.js"></script>
+<script type="text/javascript" charset="UTF-8" src="js/funcions-fmea2-0.js"></script>
+</header>
+<body>
+	<div class="container-fluid">
+		<div class="row div2">
+			<div class="col-md-2">
+				<img src="img/logo.jpg" width="200px">
+			</div>
+			<div class="col-md-10">
+				<h4 style="padding-top: 20px">FMEA 2.0 - QA Video Engineering</h4>
+			</div>
+		</div>
+		<hr width="#">
+		<hr width="#">
+<!--MENU DE EXPLICAÇÃO PARA OPÇÕES-->
+		<div class="row div4">
+	<!--PAINEL REPRODUCIBILIDADE-->
+			<div class="col-md-3">
+				<table class="table table-bordered">
+					<tr><th colspan="5">Reproducibility</th></tr>
+					<tr>
+						<td>Reproducibility:</td>
+						<td><input style="font-size:large; type="text" class="numero" id="reproducibility" onkeyup="validadeDado(this, this.value); calcularFmea();" placeholder="0"></td>
+					</tr>
+					<tr>
+						<td>Rare</td>
+						<td>1</td>
+						<td>Roproduced only once</td>
+					</tr>
+					<tr>
+						<td>Low</td>
+						<td>2</td>
+						<td>Until 30%</td>
+					</tr>
+					<tr>
+						<td>Sometimes</td>
+						<td>3</td>
+						<td>More than 30% e less than 70%</td>
+					</tr>
+                                        <tr>
+                                                <td>Often</td>
+                                                <td>4</td>
+                                                <td>More than 70%</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Always</td>
+                                                <td>5</td>
+                                                <td>100%</td>
+                                        </tr>
+				</table>
+				<tl>Reproducibility failure percentage - 5 levels</tl>
+			</div>
+	<!--PAINEL SEVERIDADE-->
+			<div class="col-md-3">
+				<table class="table table-bordered">
+					<tr><th colspan="3">Severity</th></tr>
+					<tr>
+						<td>Severity:</td>
+						<td><input style="font-size:large; type="text" class="numero" id="severity" onkeyup="validadeDado(this, this.value); calcularFmea();" placeholder="0"></td>
+					</tr>
+					<tr>
+						<td>Lery low</td>
+						<td>1</td>
+						<td>Imperceptible to most of the customers</td>
+					</tr>
+					
+					<tr>
+						<td>Baixa</td>
+						<td>2</td>
+						<td>Perceptivel ao usuário, porém a funcionalidade se mantém</td>
+					</tr>
+					<tr>
+						<td>Moderada</td>
+						<td>3</td>
+						<td>Workaround simples – zapping e standby</td>
+					</tr>
+					
+					<tr>
+						<td>Alta</td>
+						<td>4</td>
+						<td>Workaround complexo – reboot elétrico e mudanças de contexto</td>
+					</tr>
+					
+					<tr>
+						<td>Muito Alta</td>
+						<td>5</td>
+						<td>Impossibilita o cliente de usufruir do serviço</td>
+					</tr>
+				</table>
+				<tl>Relativo à percepção do usuário sobre o problema - 5 níveis</tl>
+			</div>
+	<!--PAINEL IMPACTO-->
+			<div class="col-md-3">
+				<table class="table table-bordered">
+					<tr><th colspan="3">Impacto</th></tr>
+					<tr>
+						<td>Impacto:</td>
+						<td><input style="font-size:large; type="text" class="numero" id="impact" onkeyup="validadeDado(this, this.value); calcularFmea();" placeholder="0"></td>
+					</tr>		
+					<tr>
+						<td>Mínimo</td>
+						<td>1</td>
+						<td>Elementos textuais e de interface que não afetam o uso</td>
+					</tr>
+					<tr>
+						<td>Baixo</td>
+						<td>2</td>
+						<td>Artefatos com ocorrência menor que 2 seg – com auto recuperação</td>
+					</tr>					
+					<tr>
+						<td>Moderado</td>
+						<td>3</td>
+						<td>Impacto na funcionalidade, com tempo de até 10 seg – com auto recuperação</td>
+					</tr>
+                                        <tr>
+                                                <td>Alto</td>
+                                                <td>4</td>
+                                                <td>Impacto na funcionalidade, com tempo superior à 10s, ou com necessidade de intervenção do usuário</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Crítico</td>
+                                                <td>5</td>
+                                                <td>Perda de funcionalidade, falha no controle parental e/ou com necessidade de visita técnica</td>
+                                        </tr>
+                                        <tr>
+                                                <td>Máximo</td>
+                                                <td>6</td>
+                                                <td>Prejuízo ao usuário (Financeiro e/ou Funcional) ou problemas de upgrade</td>
+                                        </tr>
+				</table>
+				<tl>Relativo ao impacto de perda da funcionalidade - 6 níveis</tl>
+			</div>
+        <!--PAINEL GRUPO DE FUNCIONALIDADE-->
+                        <div class="col-md-3">
+                                <table class="table table-bordered">
+                                        <tr><th colspan="3">Grupo de Funcionalidade</th></tr>
+                                        <tr>
+                                                <td>Grupo de Funcionalidade:</td>
+                                                <td><input style="font-size:large; type="text" class="numero" id="group" onkeyup="validadeDado(this, this.value); calcularFmea();" placeholder="0"></td>
+                                        </tr>
+                                        <tr>
+                                                <td>Live TV</td>
+                                                <td>5</td>
+                                                <td>Zapping, Volume, Playback (áudio e vídeo), Pause TV, StartOver, Timeshift, Recording, Standby, Parental, Bloqueio, troca de áudio/legenda</td>
+                                        </tr>
+
+                                        <tr>
+                                                <td>Upgrade</td>
+                                                <td>5</td>
+                                                <td>Problemas com atualizaão de versão</td>
+                                        </tr>
+
+                                        <tr>
+                                                <td>VoD Netflix</td>
+                                                <td>3</td>
+                                                <td>Catchup, VoD, Netflix, Parental, Bloqueio, troca de áudio, legenda</td>
+                                        </tr>
+
+                                        <tr>
+                                                <td>Guias e Catálogos</td>
+                                                <td>2</td>
+                                                <td>EPG, Miniguia, On Now, VL Stripes e Search</td>
+                                        </tr>
+
+                                        <tr>
+                                                <td>Outros</td>
+                                                <td>1</td>
+                                                <td>Configurações, Recomendador, BI, Aplicativos, Notificações, etc</td>
+                                        </tr>
+                                </table>
+				<tl>Grupo de funcionalidade:</strong> Peso da funcionalidade relativa ao uso - 5 grupos</tl>
+                        </div>
+		</div>
+		<hr width="#">
+		<hr width="#">
+<!--EXPLICAÇÃO E FUNCIONAMENTO DA FERRAMENTA -->
+		<div class="row div2">
+	<!--PAINEL RESULTADOS-->
+			<div class="col-md-3">
+				<table class="table table-bordered">
+					<tr>
+						<th>Criticidade</th>
+						<td><input  style="font-size:x-large; type="text" id="criticity" disabled value="0%" width='20' ></td>
+					</tr>
+					<tr style="background:#94ff7a;">
+						<td>0% - 20%</td>
+						<td>Trivial</td>
+					</tr>
+					
+					<tr style="background:#fffa00;">
+						<td>20% - 40%</td>
+						<td>Minor</td>
+					</tr>
+					
+					<tr style="background:#ff9900;">
+						<td>40% - 60%</td>
+						<td>Major</td>
+					</tr>
+					
+					<tr style="background:#ff0000; color:#FFF">
+						<td>60% - 80%</td>
+						<td>Critical</td>
+					</tr>
+					
+					<tr style="background:#000; color:#FFF">
+						<td>80% - 100%</td>
+						<td>Blocker</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
